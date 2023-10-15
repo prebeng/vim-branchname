@@ -1,4 +1,4 @@
-# Fossil plugin for vim
+# Get branchname in Vim
 
 A [Vim][vim] plugin to find a branchname, e.g. to show in the status line.
 
