@@ -36,11 +36,11 @@ var Config = {
 }
 
 # Global error message for debugging
-var GlobalError = ""
+var GlobalError = ''
 
 def GetConfig(cvs: string, key: string, usedefault: bool = 1): any
     var configs = [Config]
-    if exists("g:branchname_config")
+    if exists('g:branchname_config')
         call insert(configs, g:branchname_config)
     endif
     for cfg in configs
@@ -75,22 +75,18 @@ def LookupBranch(dir: string): string
         if !empty(cmd)
             var shelldir = shellescape(dir)
             if cvs == 'fossil'
-                cmd = cmd .. ' branch current --chdir ' .. shelldir
+                cmd ..= ' branch current --chdir ' .. shelldir
             elseif cvs == 'git'
-                cmd = cmd .. ' -C ' .. shelldir .. ' branch --show-current'
+                cmd ..= ' -C ' .. shelldir .. ' branch --show-current'
             elseif cvs == 'mercurial'
-                cmd = cmd .. ' branch -R ' .. shelldir
+                cmd ..= ' branch -R ' .. shelldir
             endif
             branch = system(cmd)
             if v:shell_error != 0
                 GlobalError = branch
                 branch = ''
             else
-                var i = stridx(branch, "\n")
-                if i != -1
-                    branch = branch[: i - 1]
-                endif
-                info['branch'] = branch
+                info['branch'] = substitute(branch, '\n.*', '', 'e')
                 info['mtime'] = mtime
             endif
         endif
