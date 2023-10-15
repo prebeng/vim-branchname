@@ -32,7 +32,7 @@ Using fossil:
 Manual installation:
 
 - Optionally use a directory as with step 1 for fossil, otherwise use `~/.vim`.
-- Copy the [doc, plugin and syntax folders][dirs] to the directory.
+- Copy the [doc and plugin folders][dirs] to the directory.
 
 [dirs]: https://fossil.guldberg.org/vim-branchname/dir?ci=tip&type=tree
 [fossil]: https://fossil-scm.org/
